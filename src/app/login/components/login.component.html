@@ -1,0 +1,25 @@
+<div class="wrapper">
+
+  <form class="form-signin shadow"  novalidate [formGroup]="formLogin">
+
+    <i class="bi bi-list-task logo logo-lg"></i>
+    <h4>{{ appName }}</h4>
+
+    <div class="form-floating my-3">
+      <input type="text" class="form-control" id="email" placeholder="usuario@email.com" formControlName="email">
+      <label for="email">Email</label>
+      <app-show-errors [control]='formLogin.controls["email"]'></app-show-errors>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+      <label for="password">Password</label>
+      <app-show-errors [control]='formLogin.controls["password"]'></app-show-errors>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit" [disabled]="!formLogin.valid" (click)="login()">
+      Ingresar
+    </button>
+  </form>
+
+</div>

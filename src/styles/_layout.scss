@@ -1,0 +1,15 @@
+.w-90 {
+  width: 90% !important;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 0 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .w-xs-100 {
+    width: 100% !important;
+  }
+}

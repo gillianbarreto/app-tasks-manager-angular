@@ -1,0 +1,14 @@
+
+.logo {
+  color: $primary;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 3rem;
+  cursor: pointer;
+
+  &-lg {
+    font-size: 5rem;
+    padding: 30px;
+  }
+}

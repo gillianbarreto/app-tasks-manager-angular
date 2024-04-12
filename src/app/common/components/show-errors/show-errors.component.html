@@ -1,0 +1,6 @@
+<small
+  class="form-text"
+  [hidden]="!shouldShowErrors()"
+  *ngFor="let error of listOfErrors(); trackBy: trackByFn"
+  [innerHTML]="error">
+</small>

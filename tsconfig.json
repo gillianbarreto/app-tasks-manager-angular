@@ -1,0 +1,52 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "paths": {
+      "crypto": ["./node_modules/crypto-js"],
+      "@core": ["src/app/core"],
+      "@core/*": ["src/app/core/*"],
+      "@models": ["src/app/core/models"],
+      "@models/*": ["src/app/core/models/*"],
+      "@guards": ["src/app/core/guards"],
+      "@guards/*": ["src/app/core/guards/*"],
+      "@services": ["src/app/core/services"],
+      "@services/*": ["src/app/core/services/*"],
+      "@common": ["src/app/common"],
+      "@common/*": ["src/app/common/*"],
+      "@utils": ["src/app/common/utils"],
+      "@utils/*": ["src/app/common/utils/*"],
+      "@environment": ["src/environments"],
+      "@environment/*": ["src/environments/*"],
+      "@mocks": ["src/test/mocks"],
+      "@mocks/*": ["src/test/mocks/*"]
+    },
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

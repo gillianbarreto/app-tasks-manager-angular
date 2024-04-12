@@ -1,0 +1,17 @@
+$primary: #53357D;
+$secundary: #ffb81d;
+
+:root {
+  --bs-primary-rgb: 83, 53, 125;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #53357D;
+  --bs-btn-border-color:  #53357D;
+  --bs-btn-hover-color: #53357D;
+  --bs-btn-hover-bg: #fff;
+  --bs-btn-hover-border-color:  #53357D;
+  --bs-btn-disabled-bg:  #53357D;
+  --bs-btn-disabled-border-color:  #53357D;
+}
