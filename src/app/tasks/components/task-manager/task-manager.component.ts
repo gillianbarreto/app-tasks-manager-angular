@@ -7,7 +7,7 @@ import { TasksHelper } from '../../services/tasks.helper';
 })
 export class TaskManagerComponent {
 
-  public taskId!: number | null;
+  public taskId!: string | null;
   public titleModal: string = "";
 
   public tasksHelper = inject(TasksHelper);
@@ -18,9 +18,9 @@ export class TaskManagerComponent {
     this.titleModal = "Añadir Tarea";
   }
 
-  editTask(id: number) {
+  editTask(taskId: string) {
     this.tasksHelper.showModal = true;
-    this.taskId = id;
+    this.taskId = taskId;
     this.titleModal = "Editar Tarea";
   }
 

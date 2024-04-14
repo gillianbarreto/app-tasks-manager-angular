@@ -16,7 +16,7 @@ import { Task } from '../../models/task';
 })
 export class EditTaskComponent implements OnInit {
 
-  @Input() taskId!: number | null;
+  @Input() taskId!: string | null;
   @Input() titleModal: string = "";
 
   public taskForm!: FormGroup;
@@ -46,7 +46,7 @@ export class EditTaskComponent implements OnInit {
 
     const data = this.taskForm.value;
     this.tasksHelper.saveTask(this.taskId, data.title, data.description);
-    this.tasksHelper.completeTask(false);
+    this.tasksHelper.allCompleted = false;
   }
 
   initModal() {

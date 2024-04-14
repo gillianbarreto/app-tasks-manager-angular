@@ -34,6 +34,12 @@ export abstract class ApiClientService {
     );
   }
 
+  protected successBody<T>(response: HttpResponse<any>): any {
+    if (response === null || response.status > 300) throw response;
+
+    return response.body;
+  }
+
   protected handleError(body: any): Observable<DataResponse> {
     const response: DataResponse = new DataResponse(
       0,

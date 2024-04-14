@@ -23,7 +23,7 @@ export class LoginService extends ApiClientService {
   public login(body: LoginRequest): Observable<DataResponse> {
     /*const url = `${this.urlBase}/login`;
     const data = { data: this.encryptService.encrypt(body, environment.SECRET_KEY_REQUEST) };
-    return this.http.post(url, data, { headers: this.getHeaders(), observe: 'response' })
+    return this.http.post(url, body, { headers: this.getHeaders(), observe: 'response' })
       .pipe(
         map(this.succesData),
         catchError(this.handleError)

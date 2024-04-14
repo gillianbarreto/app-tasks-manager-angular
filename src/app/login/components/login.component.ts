@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '@environment';
 
-import { KEYS, SessionService } from '@services';
+import { DataResponse, KEYS, SessionService } from '@services';
 import { LoginService } from '../services/login.service';
 import { validFormat } from '@common/utils';
 import { LoginRequest } from '../models/login';
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
     const body: LoginRequest = { ...this.formLogin.value };
 
-    this.loginService.login(body).subscribe((response: { getCode: () => number; getPayload: () => any; }) => {
+    this.loginService.login(body).subscribe((response: DataResponse) => {
       if (response.getCode() == 200) {
         this.formLogin.reset();
         this.disabledButton = false;

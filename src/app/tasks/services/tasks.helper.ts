@@ -32,7 +32,7 @@ export class TasksHelper {
     this._allCompleted = allCompleted;
   }
 
-  getTaskById(taskId: number | null): Task {
+  getTaskById(taskId: string | null): Task {
     if (!taskId) return this.initTask();
     const task = this._tasksList.find(task => task.id == taskId)
     if (!task) return this.initTask();
@@ -41,7 +41,7 @@ export class TasksHelper {
 
   initTask(): Task {
     return {
-      id: 0,
+      id: "0",
       title: '',
       description: '',
       completed: false,
@@ -51,9 +51,9 @@ export class TasksHelper {
 
   getTasksList() {
     this._tasksList = [];
-    const userId = this._sessionService.getData(KEYS.user);
+    const userId = this._sessionService.getUserID();
     this._tasksService.getTasksList(userId).subscribe(response => {
-      this.tasksList = response.getPayload().tasks;
+      this.tasksList = response;
       this.setAllCompletedTask();
     });
   }
@@ -65,43 +65,57 @@ export class TasksHelper {
   completedAll() {
     this._tasksList = this._tasksList.map(task => {
       task.completed = this._allCompleted;
+      this._tasksService.editTask(task.id, task).subscribe();
       return task;
     });
   }
 
-  completeTask(completed: boolean) {
-    if (!completed) {
-      this._allCompleted = false;
-    } else if (!this._allCompleted) {
-      this.setAllCompletedTask();
-    }
+  completeTask(task: Task) {
+    this._tasksService.editTask(task.id, task).subscribe(() => {
+      if (!task.completed) {
+        this._allCompleted = false;
+      } else if (!this._allCompleted) {
+        this.setAllCompletedTask();
+      }
+    });
   }
 
-  saveTask(taskId: number | null, title: string, description: string) {
+  saveTask(taskId: string | null, title: string, description: string) {
     if (taskId) this.updateTask(taskId, title, description);
     else this.createTask(title, description);
   }
 
   createTask(title: string, description: string) {
-    const id = this._tasksList.length + 1;
-    this._tasksList.push({
+    const last = this._tasksList[this._tasksList.length - 1];
+    const id: string = (parseInt(last!.id, 10) + 1).toString();
+    const data: Task = {
       id,
       title,
       description,
       completed: false,
-      userId: this._sessionService.getData(KEYS.user),
-    })
+      userId: this._sessionService.getUserID(),
+    };
+
+    this._tasksService.addTask(data).subscribe(response => {
+      this._tasksList.push(response);
+    });
   }
 
-  updateTask(taskId: number, title: string, description: string) {
+  updateTask(taskId: string, title: string, description: string) {
     const index = this._tasksList.findIndex(task => task.id == taskId);
     if (index > 0) {
-      this._tasksList[index].title = title;
-      this._tasksList[index].description = description;
+      const data = this._tasksList[index];
+      data.title = title;
+      data.description = description;
+      this._tasksService.editTask(taskId, data).subscribe(response => {
+        this._tasksList[index] = response;
+      });
     }
   }
 
-  deleteTask(id: number) {
-    this._tasksList = this._tasksList.filter(task => task.id !== id);
+  deleteTask(taskId: string) {
+    this._tasksService.deleteTask(taskId).subscribe(response => {
+      this._tasksList = this._tasksList.filter(task => task.id !== taskId);
+    });
   }
 }

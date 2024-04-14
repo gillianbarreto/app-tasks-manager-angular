@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '@environment';
-import { ApiClientService, DataResponse, EncryptService, SessionService } from '@core/services';
+import { ApiClientService, SessionService } from '@core/services';
+import { Task } from '../models/task';
 
 
 @Injectable({
@@ -18,50 +18,40 @@ export class TasksService extends ApiClientService {
     super(http, sessionService);
   }
 
-  public getTasksList(userId: number): Observable<DataResponse> {
-    /*const url = `${this.urlBase}/tasks?userId=${userId}`;
+  public getTasksList(userId: number): Observable<any> {
+    const url = `${this.urlBase}/tasks?userId=${userId}`;
     return this.http.get(url, { headers: this.getHeaders(), observe: 'response' })
       .pipe(
-        map(this.succesData),
+        map(this.successBody),
         catchError(this.handleError)
-      );*/
+      );
+  }
 
-      return new Observable(obs => obs.next(
-        new DataResponse(
-          200,
-          'Success',
-          { "tasks": [
-            {
-              "id": 1,
-              "title": "Comprar leche",
-              "description": "Ir al supermercado",
-              "completed": false,
-              "userId": 1
-            },
-            {
-              "id": 2,
-              "title": "Hacer ejercicio",
-              "description": "Correr en el parque",
-              "completed": false,
-              "userId": 1
-            },
-            {
-              "id": 3,
-              "title": "Hacer cafe",
-              "description": "Comprar cafe, leche y azucar",
-              "completed": false,
-              "userId": 1
-            },
-            {
-              "id": 4,
-              "title": "Hacer torta",
-              "description": "Comprar ingredientes, batir y hornear",
-              "completed": true,
-              "userId": 1
-            },
-          ] }
-        )
-      ));
+  public addTask(task: Task): Observable<any> {
+    const url = `${this.urlBase}/tasks`;
+    return this.http.post(url, task, { headers: this.getHeaders(), observe: 'response' })
+      .pipe(
+        map(this.successBody),
+        catchError(this.handleError)
+      );
+  }
+
+  public editTask(taskId: string, task: Task): Observable<any> {
+    const url = `${this.urlBase}/tasks/${taskId}`;
+    return this.http.put(url, task, { headers: this.getHeaders(), observe: 'response' })
+      .pipe(
+        map(this.successBody),
+        catchError(this.handleError)
+      );
+  }
+
+  public deleteTask(taskId: string): Observable<any> {
+    const url = `${this.urlBase}/tasks/${taskId}`;
+    return this.http.delete(url, { headers: this.getHeaders(), observe: 'response' })
+      .pipe(
+        map(this.successBody),
+        catchError(this.handleError)
+      );
   }
 
 }

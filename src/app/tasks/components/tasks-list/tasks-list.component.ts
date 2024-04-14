@@ -4,6 +4,7 @@ import { TasksHelper } from '../../services/tasks.helper';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@common/components/shared.module';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../models/task';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class TasksListComponent implements OnInit {
 
   @Output() onAddTask: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onEditTask: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onEditTask: EventEmitter<string> = new EventEmitter<string>();
 
   public tasksHelper = inject(TasksHelper);
 
@@ -27,20 +28,20 @@ export class TasksListComponent implements OnInit {
     this.tasksHelper.completedAll();
   }
 
-  completeTask(completed: boolean) {
-    this.tasksHelper.completeTask(completed);
+  completeTask(task: Task) {
+    this.tasksHelper.completeTask(task);
   }
 
   addTask() {
     this.onAddTask.emit();
   }
 
-  editTask(id: number) {
-    this.onEditTask.emit(id);
+  editTask(taskId: string) {
+    this.onEditTask.emit(taskId);
   }
 
-  deleteTask(id: number) {
-    this.tasksHelper.deleteTask(id);
+  deleteTask(taskId: string) {
+    this.tasksHelper.deleteTask(taskId);
   }
 
 }
