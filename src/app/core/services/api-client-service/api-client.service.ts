@@ -24,7 +24,7 @@ export abstract class ApiClientService {
     }
   }
 
-  protected succesData<T>(response: HttpResponse<any>): DataResponse {
+  protected successData<T>(response: HttpResponse<any>): DataResponse {
     if (response === null || response.status !== 200) throw response;
 
     return new DataResponse(

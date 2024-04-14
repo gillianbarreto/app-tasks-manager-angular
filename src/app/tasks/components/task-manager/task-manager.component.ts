@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TasksHelper } from '../../services/tasks.helper';
 
 @Component({
   selector: 'app-task',
@@ -6,6 +7,21 @@ import { Component } from '@angular/core';
 })
 export class TaskManagerComponent {
 
-  constructor() { }
+  public taskId!: number | null;
+  public titleModal: string = "";
+
+  public tasksHelper = inject(TasksHelper);
+
+  addTask() {
+    this.tasksHelper.showModal = true;
+    this.taskId = null;
+    this.titleModal = "Añadir Tarea";
+  }
+
+  editTask(id: number) {
+    this.tasksHelper.showModal = true;
+    this.taskId = id;
+    this.titleModal = "Editar Tarea";
+  }
 
 }

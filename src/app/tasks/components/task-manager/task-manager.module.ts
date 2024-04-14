@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TaskManagerComponent } from './task-manager.component';
-import { HistoryRoutingModule } from '../task-manager.routing.module';
+import { TaskManagerRoutingModule } from '../task-manager.routing.module';
 import { SharedModule } from '@common/components/shared.module';
-import { TasksListModule } from '../tasks-list';
+import { TasksListComponent } from '../tasks-list/tasks-list.component';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @NgModule({
-  declarations: [TaskManagerComponent],
+  declarations: [TaskManagerComponent ],
   imports: [
     CommonModule,
     SharedModule,
-    HistoryRoutingModule,
-    TasksListModule
+    TaskManagerRoutingModule,
+    TasksListComponent,
+    EditTaskComponent,
   ],
   exports: [],
   providers: [],

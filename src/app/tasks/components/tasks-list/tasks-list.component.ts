@@ -1,49 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 
-import { KEYS, SessionService } from '@services';
-import { Task } from '../../models/task';
-import { TasksService } from '../../services/tasks.service';
+import { TasksHelper } from '../../services/tasks.helper';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '@common/components/shared.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.scss']
+  styleUrls: ['./tasks-list.component.scss'],
+  imports: [ CommonModule, FormsModule, SharedModule]
 })
 export class TasksListComponent implements OnInit {
 
-  public tasksList: Task[] = [];
+  @Output() onAddTask: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onEditTask: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(
-    private tasksService: TasksService,
-    private sessionService: SessionService
-  ) { }
+  public tasksHelper = inject(TasksHelper);
 
   ngOnInit(): void {
-    this.getTasksList();
+    this.tasksHelper.getTasksList();
   }
 
-  getTasksList() {
-    this.tasksList = [];
-    const user_id = this.sessionService.getData(KEYS.user);
-    this.tasksService.getTasksList(user_id).subscribe(response => {
-      this.tasksList = response.getPayload().tasks;
-    });
+  completedAll() {
+    this.tasksHelper.completedAll();
   }
 
-  changeStatus(event: any, task: number) {
-
+  completeTask(completed: boolean) {
+    this.tasksHelper.completeTask(completed);
   }
 
   addTask() {
-
+    this.onAddTask.emit();
   }
 
   editTask(id: number) {
-
+    this.onEditTask.emit(id);
   }
 
   deleteTask(id: number) {
-    this.tasksList = this.tasksList.filter(item => item.id === id);
+    this.tasksHelper.deleteTask(id);
   }
 
 }

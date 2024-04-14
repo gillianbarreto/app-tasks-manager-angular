@@ -10,9 +10,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     NotFoundComponent,
     SpinnerComponent],
   imports: [CommonModule],
-  exports: [
-    SpinnerComponent
-  ],
+  exports: [ SpinnerComponent ],
   providers: [httpInterceptorProviders]
 })
 export class CoreModule {

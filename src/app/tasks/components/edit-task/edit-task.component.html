@@ -1,0 +1,20 @@
+<app-modal
+  [title]="titleModal"
+  primaryButtonText="Guardar"
+  [primaryButtonDisabled]="taskForm && !taskForm.valid"
+  (onPrimaryAction)="saveTask()"
+  (onSecondaryAction)="hideModal()"
+>
+  <form class="row g-3" novalidate [formGroup]="taskForm">
+    <div class="col-md-12">
+      <label for="title" class="form-label">Titulo</label>
+      <input type="text" class="form-control" id="title" formControlName="title">
+      <app-show-errors [control]='taskForm.controls["title"]'></app-show-errors>
+    </div>
+    <div class="col-md-12">
+      <label for="description" class="form-label">Descripción</label>
+      <input type="text" class="form-control" id="description" formControlName="description">
+      <app-show-errors [control]='taskForm.controls["description"]'></app-show-errors>
+    </div>
+  </form>
+</app-modal>

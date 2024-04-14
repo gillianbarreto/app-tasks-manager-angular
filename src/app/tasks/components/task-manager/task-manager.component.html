@@ -1,5 +1,18 @@
-<div class="wrapper">
-  <app-header></app-header>
-  <h2 class="my-3 py-3 text-center">Mis Tareas</h2>
-  <app-tasks-list></app-tasks-list>
+<app-header title="Mis Tareas"></app-header>
+
+<div class="container">
+  <div class="wrapper">
+    <app-tasks-list
+      (onAddTask)="addTask()"
+      (onEditTask)="editTask($event)"
+    ></app-tasks-list>
+  </div>
 </div>
+
+<app-footer></app-footer>
+
+<app-edit-task
+  *ngIf="tasksHelper.showModal"
+  [taskId]="taskId"
+  [titleModal]="titleModal"
+></app-edit-task>

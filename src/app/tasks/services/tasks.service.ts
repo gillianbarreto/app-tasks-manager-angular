@@ -45,6 +45,20 @@ export class TasksService extends ApiClientService {
               "completed": false,
               "userId": 1
             },
+            {
+              "id": 3,
+              "title": "Hacer cafe",
+              "description": "Comprar cafe, leche y azucar",
+              "completed": false,
+              "userId": 1
+            },
+            {
+              "id": 4,
+              "title": "Hacer torta",
+              "description": "Comprar ingredientes, batir y hornear",
+              "completed": true,
+              "userId": 1
+            },
           ] }
         )
       ));
