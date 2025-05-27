@@ -1,6 +1,6 @@
 <app-modal
   [title]="modalTitle"
-  primaryButtonText="Guardar"
+  [primaryButtonText]="labels.primaryButtonText"
   [primaryButtonDisabled]="taskForm && !taskForm.valid"
   (onPrimaryAction)="saveTask()"
   (onSecondaryAction)="hideModal()"
@@ -27,6 +27,16 @@
       <app-form-errors
         [control]="taskForm.controls['description']"
       ></app-form-errors>
+    </div>
+
+    <div class="col-md-12">
+      <span class="pe-2">{{ labels.status }}</span>
+      <span *ngIf="completedTask" class="badge text-bg-secondary">
+        {{ labels.completed }}
+      </span>
+      <span *ngIf="!completedTask" class="badge text-bg-danger">
+        {{ labels.pending }}
+      </span>
     </div>
   </form>
 </app-modal>

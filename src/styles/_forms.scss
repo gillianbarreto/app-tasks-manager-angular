@@ -13,10 +13,19 @@ input::placeholder {
   box-shadow: 0 0 0 0.25rem rgba(230, 234, 240, 0.25);
 }
 
-// Remove navigator background
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-check-input:checked {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.form-check-input:focus {
+  border-color: $primary-color;
+  box-shadow: 0 0 0 0.25rem $primary-color-25;
 }

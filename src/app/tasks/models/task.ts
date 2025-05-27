@@ -3,7 +3,7 @@ export interface Task {
   title: string;
   description: string;
   completed: boolean;
-  userId: number;
+  userId: string;
 }
 
 export interface TaskResponse {

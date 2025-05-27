@@ -16,7 +16,7 @@ export class TasksService extends ApiClientService {
     super(http, sessionService);
   }
 
-  public getTasksList(userId: number): Observable<any> {
+  public getTasksList(userId: string): Observable<any> {
     const url = `${this.urlBase}/tasks?userId=${userId}`;
     return this.http
       .get(url, { headers: this.getHeaders(), observe: 'response' })

@@ -9,11 +9,20 @@ import { SessionService } from '@core/services';
 })
 export class TasksHelper {
   public showModal: boolean = false;
-
+  public showConfirmModal: boolean = false;
   private _tasksList: Task[] = [];
+  private _selectedTaskId: string = "";
   private _allCompleted: boolean = false;
   private _tasksService = inject(TasksService);
   private _sessionService = inject(SessionService);
+
+  get selectedTaskId(): string {
+    return this._selectedTaskId;
+  }
+
+  set selectedTaskId(idTask: string) {
+    this._selectedTaskId = idTask;
+  }
 
   get tasksList(): Task[] {
     return this._tasksList;
@@ -44,7 +53,7 @@ export class TasksHelper {
       title: '',
       description: '',
       completed: false,
-      userId: 0,
+      userId: '0',
     };
   }
 
@@ -113,9 +122,9 @@ export class TasksHelper {
     }
   }
 
-  deleteTask(taskId: string) {
-    this._tasksService.deleteTask(taskId).subscribe((response) => {
-      this._tasksList = this._tasksList.filter((task) => task.id !== taskId);
+  deleteTask() {
+    this._tasksService.deleteTask(this.selectedTaskId).subscribe((response) => {
+      this._tasksList = this._tasksList.filter((task) => task.id !== this.selectedTaskId);
     });
   }
 }

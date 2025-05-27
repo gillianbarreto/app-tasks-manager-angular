@@ -1,11 +1,11 @@
 <section class="table-responsive mx-5">
-  <div class="d-flex justify-content-end gap-2 p-3">
+  <div class="d-flex justify-content-end gap-2 p-3 my-3">
     <span class="cursor-pointer" (click)="addTask()">
       {{ labels.addTask }} <i class="bi bi-plus-circle"></i>
     </span>
   </div>
-  <table class="table table-striped table-sm">
-    <thead>
+  <table class="table table-hover table-sm">
+    <thead class="table-secondary">
       <tr>
         <th scope="col">
           <input
@@ -41,7 +41,7 @@
           <span *ngIf="task.completed" class="badge text-bg-secondary">
             {{ labels.completed }}
           </span>
-          <span *ngIf="!task.completed" class="badge text-bg-light">
+          <span *ngIf="!task.completed" class="badge text-bg-danger">
             {{ labels.pending }}
           </span>
         </td>
@@ -68,3 +68,7 @@
     </tbody>
   </table>
 </section>
+
+<app-delete-task
+  *ngIf="tasksHelper.showConfirmModal"
+></app-delete-task>

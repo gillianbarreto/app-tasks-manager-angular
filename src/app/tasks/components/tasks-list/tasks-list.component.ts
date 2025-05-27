@@ -5,14 +5,15 @@ import { CommonModule } from '@angular/common';
 import { Task } from '../../models/task';
 import { TasksHelper } from '../../services/tasks.helper';
 import { TASK_LABELS, TASK_MESSAGE } from '../../content';
-import { SharedModule } from '@common/components/shared.module';
+import { SharedModule } from '@common';
+import { DeleteTaskComponent } from '../delete-task/delete-task.component';
 
 @Component({
   standalone: true,
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss'],
-  imports: [CommonModule, FormsModule, SharedModule],
+  imports: [CommonModule, FormsModule, SharedModule, DeleteTaskComponent],
 })
 export class TasksListComponent implements OnInit {
   @Output() onAddTask: EventEmitter<any> = new EventEmitter<any>();
@@ -44,6 +45,7 @@ export class TasksListComponent implements OnInit {
   }
 
   public deleteTask(taskId: string): void {
-    this.tasksHelper.deleteTask(taskId);
+    this.tasksHelper.selectedTaskId = taskId;
+    this.tasksHelper.showConfirmModal = true;
   }
 }

@@ -59,7 +59,7 @@ export class SessionService {
     return this.getData(KEYS.token);
   }
 
-  public getUserID(): number {
-    return parseInt(this.getData(KEYS.user), 10);
+  public getUserID(): string {
+    return this.getData(KEYS.user);
   }
 }

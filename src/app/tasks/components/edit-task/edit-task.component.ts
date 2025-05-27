@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -10,7 +11,7 @@ import {
 import { ModalService } from '@core/services';
 import { ModalComponent } from '@common/components/modal/modal.component';
 import { validFormat } from '@common/utils';
-import { SharedModule } from '@common/components/shared.module';
+import { SharedModule } from '@common';
 import { Task } from '../../models/task';
 import { TASK_LABELS } from '../../content';
 import { TasksHelper } from '../../services/tasks.helper';
@@ -19,7 +20,7 @@ import { TasksHelper } from '../../services/tasks.helper';
   standalone: true,
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  imports: [FormsModule, ReactiveFormsModule, ModalComponent, SharedModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ModalComponent, SharedModule],
 })
 export class EditTaskComponent implements OnInit {
   @Input() taskId!: string | null;
@@ -28,6 +29,7 @@ export class EditTaskComponent implements OnInit {
   public labels = TASK_LABELS;
   public taskForm!: FormGroup;
   private task!: Task;
+  public completedTask: boolean = false;
 
   public tasksHelper = inject(TasksHelper);
   private modalService = inject(ModalService);
@@ -35,6 +37,7 @@ export class EditTaskComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.task = await this.tasksHelper.getTaskById(this.taskId);
+    this.completedTask = this.task.completed;
     this.configForm();
     this.initModal();
   }
@@ -78,5 +81,6 @@ export class EditTaskComponent implements OnInit {
 
   public hideModal(): void {
     this.tasksHelper.showModal = false;
+    this.modalService.closeModal();
   }
 }

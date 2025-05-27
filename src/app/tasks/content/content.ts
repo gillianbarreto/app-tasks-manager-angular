@@ -6,14 +6,17 @@ export const TASK_LABELS = {
   addTask: 'Add Task',
   completed: 'Completed',
   pending: 'Pending',
+  primaryButtonText: 'Save',
 };
 
 export const TASK_TITLE = {
   taskList: 'My tasks',
   addTask: 'Add task',
   editTask: 'Edit task',
+  deleteTask: 'Delete task',
 };
 
 export const TASK_MESSAGE = {
   emptyList: 'There are no tasks available.',
+  deleteTask: 'Are you sure you want to delete this task?'
 };
