@@ -1,25 +1,41 @@
-<div class="wrapper">
+<form class="form-signin shadow" novalidate [formGroup]="loginForm">
+  <div class="text-center mb-4">
+    <i class="bi bi-card-checklist logo logo-lg"></i>
+    <h1>{{ appName }}</h1>
+  </div>
 
-  <form class="form-signin shadow"  novalidate [formGroup]="formLogin">
+  <div class="mb-4">
+    <label class="form-label" for="email">{{ texts.emailLabel }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="email"
+      placeholder="user@email.com"
+      formControlName="email"
+    />
+    <app-form-errors [control]="loginForm.controls['email']"></app-form-errors>
+  </div>
 
-    <i class="bi bi-list-task logo logo-lg"></i>
-    <h4>{{ appName }}</h4>
+  <div class="mb-4">
+    <label class="form-label" for="password">{{ texts.passwordLabel }}</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <app-form-errors
+      [control]="loginForm.controls['password']"
+    ></app-form-errors>
+  </div>
 
-    <div class="form-floating my-3">
-      <input type="text" class="form-control" id="email" placeholder="usuario@email.com" formControlName="email">
-      <label for="email">Email</label>
-      <app-show-errors [control]='formLogin.controls["email"]'></app-show-errors>
-    </div>
-
-    <div class="form-floating">
-      <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
-      <label for="password">Password</label>
-      <app-show-errors [control]='formLogin.controls["password"]'></app-show-errors>
-    </div>
-
-    <button class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit" [disabled]="!formLogin.valid" (click)="login()">
-      Ingresar
-    </button>
-  </form>
-
-</div>
+  <button
+    class="w-100 btn btn-lg btn-primary my-4"
+    type="submit"
+    [disabled]="!loginForm.valid"
+    (click)="login()"
+  >
+    {{ texts.primaryButtonText }}
+  </button>
+</form>

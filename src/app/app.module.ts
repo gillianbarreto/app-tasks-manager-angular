@@ -9,17 +9,14 @@ import { ModalErrorComponent } from '@common/components/modal-error/modal-error.
 import { CoreModule } from '@core/core.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ModalErrorComponent
-  ],
+  declarations: [AppComponent, ModalErrorComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CoreModule,
+    CoreModule
   ],
   providers: [SessionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

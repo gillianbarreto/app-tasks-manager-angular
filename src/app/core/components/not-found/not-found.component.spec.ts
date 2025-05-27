@@ -11,9 +11,8 @@ describe('NotFoundComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NotFoundComponent],
-      imports: [RouterTestingModule]
-    })
-      .compileComponents();
+      imports: [RouterTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,5 +31,4 @@ describe('NotFoundComponent', () => {
     component.goToHome();
     expect(router.navigate).toHaveBeenCalled();
   });
-
 });

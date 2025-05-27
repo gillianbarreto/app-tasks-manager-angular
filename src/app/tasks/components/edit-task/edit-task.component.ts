@@ -1,24 +1,31 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
-import { TasksHelper } from '../../services/tasks.helper';
 import { ModalService } from '@core/services';
 import { ModalComponent } from '@common/components/modal/modal.component';
 import { validFormat } from '@common/utils';
 import { SharedModule } from '@common/components/shared.module';
 import { Task } from '../../models/task';
+import { TASK_LABELS } from '../../content';
+import { TasksHelper } from '../../services/tasks.helper';
 
 @Component({
   standalone: true,
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  imports: [ FormsModule, ReactiveFormsModule, ModalComponent, SharedModule ]
+  imports: [FormsModule, ReactiveFormsModule, ModalComponent, SharedModule],
 })
 export class EditTaskComponent implements OnInit {
-
   @Input() taskId!: string | null;
-  @Input() titleModal: string = "";
+  @Input() modalTitle: string = '';
 
+  public labels = TASK_LABELS;
   public taskForm!: FormGroup;
   private task!: Task;
 
@@ -26,20 +33,35 @@ export class EditTaskComponent implements OnInit {
   private modalService = inject(ModalService);
   private formBuilder = inject(FormBuilder);
 
- async ngOnInit(): Promise<void> {
+  async ngOnInit(): Promise<void> {
     this.task = await this.tasksHelper.getTaskById(this.taskId);
     this.configForm();
     this.initModal();
   }
 
-  configForm() {
+  private configForm(): void {
     this.taskForm = this.formBuilder.group({
-      "title": [this.task.title, [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern(validFormat.ONLY_LETTERS)]],
-      "description": [this.task.description, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      title: [
+        this.task.title,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+          Validators.pattern(validFormat.ONLY_LETTERS),
+        ],
+      ],
+      description: [
+        this.task.description,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100),
+        ],
+      ],
     });
   }
 
-  saveTask() {
+  public saveTask(): void {
     if (!this.taskForm.valid) return;
     this.modalService.closeModal();
     this.hideModal();
@@ -49,12 +71,12 @@ export class EditTaskComponent implements OnInit {
     this.tasksHelper.allCompleted = false;
   }
 
-  initModal() {
+  private initModal(): void {
     this.modalService.initModal('modal');
     this.modalService.showModal();
   }
 
-  hideModal() {
+  public hideModal(): void {
     this.tasksHelper.showModal = false;
   }
 }

@@ -8,20 +8,19 @@ import { SessionService } from '../session/session.service';
 
 @Injectable()
 export abstract class ApiClientService {
-
-  protected urlBase = `${environment.API_URL}`;
+  protected urlBase = environment.API_URL;
 
   constructor(
     protected http: HttpClient,
     protected sessionService: SessionService
-  ) { }
+  ) {}
 
   protected getHeaders(): any {
     return {
       'Content-Type': 'application/json',
-      'nombre-aplicacion': 'taskManagerApp',
-      'Authorization': this.sessionService.getToken() || 'test'
-    }
+      'nombre-aplicacion': environment.APP_ID,
+      Authorization: this.sessionService.getToken() || 'test',
+    };
   }
 
   protected successData<T>(response: HttpResponse<any>): DataResponse {
@@ -43,10 +42,10 @@ export abstract class ApiClientService {
   protected handleError(body: any): Observable<DataResponse> {
     const response: DataResponse = new DataResponse(
       0,
-      body.error && body.error.mensaje || 'En estos momentos no te podemos atender, favor intenta más tarde',
+      (body.error && body.error.mensaje) ||
+        'We are unable to assist you at this time. Please try again later.',
       body
     );
     return throwError(response);
   }
-
 }

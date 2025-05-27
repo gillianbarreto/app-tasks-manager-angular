@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpRequest, HttpHandler, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpRequest,
+  HttpHandler,
+  HttpInterceptor,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -17,25 +23,24 @@ export class HttpError {
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-
-        if (error.status === 0 || error.status >= HttpError.InternalServerError) {
+        if (
+          error.status === 0 ||
+          error.status >= HttpError.InternalServerError
+        ) {
           this.modalService.initModal('modal-error');
           this.modalService.showModal();
         }
 
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
 }
-

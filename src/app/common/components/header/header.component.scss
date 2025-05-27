@@ -1,18 +1,16 @@
 @import "../../../../styles/vars";
 
-li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-width: 80px;
-  cursor: pointer;
-}
-.bi {
-  display: block;
-  font-size: 2rem;
-}
+:host {
+  .bi {
+    display: block;
+    font-size: 3rem;
+  }
 
-.nav-link:hover {
-  color: $secundary !important;
+  .nav-link:hover {
+    color: $secondary-color !important;
+  }
+
+  .logo {
+    background-color: white;
+  }
 }

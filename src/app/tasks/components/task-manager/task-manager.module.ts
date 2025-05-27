@@ -8,7 +8,7 @@ import { TasksListComponent } from '../tasks-list/tasks-list.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @NgModule({
-  declarations: [TaskManagerComponent ],
+  declarations: [TaskManagerComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -16,7 +16,5 @@ import { EditTaskComponent } from '../edit-task/edit-task.component';
     TasksListComponent,
     EditTaskComponent,
   ],
-  exports: [],
-  providers: [],
 })
-export class TaskManagerModule { }
+export class TaskManagerModule {}

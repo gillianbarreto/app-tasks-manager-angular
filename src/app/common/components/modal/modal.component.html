@@ -1,18 +1,45 @@
-<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="modalTitle" aria-hidden="true">
+<div
+  class="modal fade"
+  id="modal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="modalTitle"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">{{ title }}</h5>
-        <button (click)="cancel()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h2 class="modal-title" id="modalTitle">{{ title }}</h2>
+        <button
+          (click)="cancel()"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         {{ message }}
         <ng-content></ng-content>
       </div>
       <div class="modal-footer">
-        <button (click)="cancel()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ secondaryButtonText}}</button>
-        <button (click)="success()" type="button" class="btn btn-primary" [disabled]="primaryButtonDisabled">{{ primaryButtonText }}</button>
+        <button
+          (click)="cancel()"
+          type="button"
+          class="btn btn-outline-primary"
+          data-bs-dismiss="modal"
+        >
+          {{ secondaryButtonText }}
+        </button>
+        <button
+          (click)="success()"
+          type="button"
+          class="btn btn-primary"
+          [disabled]="primaryButtonDisabled"
+        >
+          {{ primaryButtonText }}
+        </button>
       </div>
     </div>
   </div>

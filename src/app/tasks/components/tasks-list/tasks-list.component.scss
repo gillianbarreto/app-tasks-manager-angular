@@ -1,7 +1,13 @@
-.table-sm>:not(caption)>*>* {
-    padding: 0.25rem 0.5rem;
-}
+@import "../../../../styles/vars";
 
-i {
+:host {
+  .table-sm > :not(caption) > * > * {
+    padding: 0.25rem 0.5rem;
+  }
+
+  i {
     cursor: pointer;
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
 }

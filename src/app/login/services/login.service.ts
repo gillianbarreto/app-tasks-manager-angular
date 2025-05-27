@@ -4,19 +4,21 @@ import { HttpClient } from '@angular/common/http';
 
 // import { environment } from '@environment';
 import { EncryptService, SessionService } from '@core/services';
-import { ApiClientService, DataResponse } from '@core/services/api-client-service';
+import {
+  ApiClientService,
+  DataResponse,
+} from '@core/services/api-client-service';
 import { LoginRequest } from '../models/login';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService extends ApiClientService {
-
   constructor(
     protected override http: HttpClient,
-    protected override sessionService: SessionService,
-    // private encryptService: EncryptService
-  ) {
+    protected override sessionService: SessionService
+  ) // private encryptService: EncryptService
+  {
     super(http, sessionService);
   }
 
@@ -30,13 +32,8 @@ export class LoginService extends ApiClientService {
       );
     */
     // Mockeando la respuesta
-    return new Observable(obs => obs.next(
-      new DataResponse(
-        200,
-        'Success',
-        { user_id: 1, token: 'token' }
-      )
-    ));
+    return new Observable((obs) =>
+      obs.next(new DataResponse(200, 'Success', { user_id: 1, token: 'token' }))
+    );
   }
-
 }

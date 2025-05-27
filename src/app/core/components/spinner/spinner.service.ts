@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpinnerService {
-  private subject = new Subject<boolean>();
+  private _subject = new Subject<boolean>();
 
-  constructor() {
+  public returnSpinner(): Observable<boolean> {
+    return this._subject.asObservable();
   }
 
-  returnSpinner() {
-    return this.subject.asObservable();
+  public openSpinner(): void {
+    this._subject.next(true);
   }
 
-  openSpinner() {
-    this.subject.next(true);
-  }
-
-  closeSpinner() {
-    this.subject.next(false);
+  public closeSpinner(): void {
+    this._subject.next(false);
   }
 }

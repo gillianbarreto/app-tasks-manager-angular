@@ -1,23 +1,23 @@
 export class DataResponse {
-  private code: number ;
-  private message: string;
-  private payload: any = {};
+  private _code: number;
+  private _message: string;
+  private _payload: any = {};
 
   constructor(code: number, message: string, payload: any) {
-    this.code = code;
-    this.message = message;
-    this.payload = payload;
+    this._code = code;
+    this._message = message;
+    this._payload = payload;
   }
 
   public getCode(): number {
-    return this.code;
+    return this._code;
   }
 
   public getMessage(): string {
-    return this.message;
+    return this._message;
   }
 
   public getPayload(): any {
-    return this.payload;
+    return this._payload;
   }
 }

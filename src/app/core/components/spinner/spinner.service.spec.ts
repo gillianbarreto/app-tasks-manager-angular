@@ -3,7 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { SpinnerService } from './spinner.service';
 
 describe('SpinnerService', () => {
-
   let service: SpinnerService;
 
   beforeEach(() => {
@@ -28,5 +27,4 @@ describe('SpinnerService', () => {
     service.closeSpinner();
     expect(service).toBeTruthy();
   });
-
 });

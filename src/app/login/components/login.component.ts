@@ -11,19 +11,23 @@ import { LoginRequest } from '../models/login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
-  public formLogin!: FormGroup;
+  public loginForm!: FormGroup;
   public disabledButton = false;
   public appName = environment.APP_NAME;
+  public texts = {
+    emailLabel: 'Email',
+    passwordLabel: 'Password',
+    primaryButtonText: 'Login',
+  };
 
   constructor(
     private formBuilder: FormBuilder,
     private sessionService: SessionService,
     private loginService: LoginService,
-    private router: Router,
+    private router: Router
   ) {
     this.configForm();
   }
@@ -32,40 +36,41 @@ export class LoginComponent implements OnInit {
     this.sessionService.initStorage();
   }
 
-  private configForm() {
-    this.formLogin = this.formBuilder.group({
-      "email": ['', [Validators.required, Validators.pattern(validFormat.EMAIL)]],
-      "password": ['', [Validators.required, Validators.maxLength(50)]],
+  private configForm(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern(validFormat.EMAIL)]],
+      password: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
-  public login() {
-    if (this.disabledButton || !this.formLogin.valid) return;
+  public login(): void {
+    if (this.disabledButton || !this.loginForm.valid) return;
 
     this.disabledButton = true;
 
-    const body: LoginRequest = { ...this.formLogin.value };
+    const body: LoginRequest = { ...this.loginForm.value };
 
-    this.loginService.login(body).subscribe((response: DataResponse) => {
-      if (response.getCode() == 200) {
-        this.formLogin.reset();
-        this.disabledButton = false;
-        const data = response.getPayload();
-        this.sessionService.setData(KEYS.user, data.user_id );
-        this.sessionService.setData(KEYS.token, data.token );
-        this.router.navigate(['/tasks-manager']);
-      } else {
-        this.showMessageError();
+    this.loginService.login(body).subscribe(
+      (response: DataResponse) => {
+        if (response.getCode() == 200) {
+          this.loginForm.reset();
+          this.disabledButton = false;
+          const data = response.getPayload();
+          this.sessionService.setData(KEYS.user, data.user_id);
+          this.sessionService.setData(KEYS.token, data.token);
+          this.router.navigate(['/tasks-manager']);
+        } else {
+          this.resetLoginForm();
+        }
+      },
+      () => {
+        this.resetLoginForm();
       }
-    }, () => {
-      this.showMessageError();
-    });
-
+    );
   }
 
-  showMessageError() {
+  private resetLoginForm(): void {
     this.disabledButton = false;
-    this.formLogin.reset();
+    this.loginForm.reset();
   }
-
 }

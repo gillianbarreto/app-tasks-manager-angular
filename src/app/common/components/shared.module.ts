@@ -4,17 +4,13 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ShowErrorsComponent } from './show-errors/show-errors.component';
+import { FormErrorsComponent } from './form-errors/form-errors.component';
 
-const components = [
-  HeaderComponent,
-  FooterComponent,
-  ShowErrorsComponent
-];
+const components = [HeaderComponent, FooterComponent, FormErrorsComponent];
 
 @NgModule({
   imports: [CommonModule, RouterModule],
   declarations: [...components],
-  exports: [...components]
+  exports: [...components],
 })
-export class SharedModule { }
+export class SharedModule {}

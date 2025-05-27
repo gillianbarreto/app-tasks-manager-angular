@@ -6,9 +6,6 @@ import { environment } from '@environment';
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-
-  private date = new Date();
-  public year = this.date.getFullYear();
+  public year = new Date().getFullYear();
   public appName = environment.APP_NAME;
-
 }

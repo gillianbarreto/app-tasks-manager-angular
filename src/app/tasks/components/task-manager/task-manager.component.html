@@ -1,18 +1,14 @@
-<app-header title="Mis Tareas"></app-header>
+<app-header [title]="taskListTitle"></app-header>
 
-<div class="container">
-  <div class="wrapper">
-    <app-tasks-list
-      (onAddTask)="addTask()"
-      (onEditTask)="editTask($event)"
-    ></app-tasks-list>
-  </div>
-</div>
+<app-tasks-list
+  (onAddTask)="addTask()"
+  (onEditTask)="editTask($event)"
+></app-tasks-list>
 
 <app-footer></app-footer>
 
 <app-edit-task
   *ngIf="tasksHelper.showModal"
   [taskId]="taskId"
-  [titleModal]="titleModal"
+  [modalTitle]="modalTitle"
 ></app-edit-task>

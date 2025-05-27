@@ -2,13 +2,12 @@ import { Injectable, inject } from '@angular/core';
 
 import { Task } from '../models/task';
 import { TasksService } from './tasks.service';
-import { KEYS, SessionService } from '@core/services';
+import { SessionService } from '@core/services';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TasksHelper {
-
   public showModal: boolean = false;
 
   private _tasksList: Task[] = [];
@@ -34,36 +33,37 @@ export class TasksHelper {
 
   getTaskById(taskId: string | null): Task {
     if (!taskId) return this.initTask();
-    const task = this._tasksList.find(task => task.id == taskId)
+    const task = this._tasksList.find((task) => task.id == taskId);
     if (!task) return this.initTask();
     return task;
   }
 
   initTask(): Task {
     return {
-      id: "0",
+      id: '0',
       title: '',
       description: '',
       completed: false,
       userId: 0,
-    }
+    };
   }
 
   getTasksList() {
     this._tasksList = [];
     const userId = this._sessionService.getUserID();
-    this._tasksService.getTasksList(userId).subscribe(response => {
+    this._tasksService.getTasksList(userId).subscribe((response) => {
       this.tasksList = response;
       this.setAllCompletedTask();
     });
   }
 
   setAllCompletedTask() {
-    this._allCompleted = (this._tasksList.findIndex(task => task.completed == false) < 0);
+    this._allCompleted =
+      this._tasksList.findIndex((task) => task.completed == false) < 0;
   }
 
   completedAll() {
-    this._tasksList = this._tasksList.map(task => {
+    this._tasksList = this._tasksList.map((task) => {
       task.completed = this._allCompleted;
       this._tasksService.editTask(task.id, task).subscribe();
       return task;
@@ -96,26 +96,26 @@ export class TasksHelper {
       userId: this._sessionService.getUserID(),
     };
 
-    this._tasksService.addTask(data).subscribe(response => {
+    this._tasksService.addTask(data).subscribe((response) => {
       this._tasksList.push(response);
     });
   }
 
   updateTask(taskId: string, title: string, description: string) {
-    const index = this._tasksList.findIndex(task => task.id == taskId);
+    const index = this._tasksList.findIndex((task) => task.id == taskId);
     if (index > 0) {
       const data = this._tasksList[index];
       data.title = title;
       data.description = description;
-      this._tasksService.editTask(taskId, data).subscribe(response => {
+      this._tasksService.editTask(taskId, data).subscribe((response) => {
         this._tasksList[index] = response;
       });
     }
   }
 
   deleteTask(taskId: string) {
-    this._tasksService.deleteTask(taskId).subscribe(response => {
-      this._tasksList = this._tasksList.filter(task => task.id !== taskId);
+    this._tasksService.deleteTask(taskId).subscribe((response) => {
+      this._tasksList = this._tasksList.filter((task) => task.id !== taskId);
     });
   }
 }

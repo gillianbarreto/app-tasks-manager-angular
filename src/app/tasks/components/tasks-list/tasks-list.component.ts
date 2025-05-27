@@ -1,22 +1,25 @@
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
-
-import { TasksHelper } from '../../services/tasks.helper';
 import { FormsModule } from '@angular/forms';
-import { SharedModule } from '@common/components/shared.module';
 import { CommonModule } from '@angular/common';
+
 import { Task } from '../../models/task';
+import { TasksHelper } from '../../services/tasks.helper';
+import { TASK_LABELS, TASK_MESSAGE } from '../../content';
+import { SharedModule } from '@common/components/shared.module';
 
 @Component({
   standalone: true,
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss'],
-  imports: [ CommonModule, FormsModule, SharedModule]
+  imports: [CommonModule, FormsModule, SharedModule],
 })
 export class TasksListComponent implements OnInit {
-
   @Output() onAddTask: EventEmitter<any> = new EventEmitter<any>();
   @Output() onEditTask: EventEmitter<string> = new EventEmitter<string>();
+
+  public labels = TASK_LABELS;
+  public emptyListMessage = TASK_MESSAGE.emptyList;
 
   public tasksHelper = inject(TasksHelper);
 
@@ -24,24 +27,23 @@ export class TasksListComponent implements OnInit {
     this.tasksHelper.getTasksList();
   }
 
-  completedAll() {
+  public completedAll(): void {
     this.tasksHelper.completedAll();
   }
 
-  completeTask(task: Task) {
+  public completeTask(task: Task): void {
     this.tasksHelper.completeTask(task);
   }
 
-  addTask() {
+  public addTask(): void {
     this.onAddTask.emit();
   }
 
-  editTask(taskId: string) {
+  public editTask(taskId: string): void {
     this.onEditTask.emit(taskId);
   }
 
-  deleteTask(taskId: string) {
+  public deleteTask(taskId: string): void {
     this.tasksHelper.deleteTask(taskId);
   }
-
 }

@@ -1,7 +1,9 @@
-.modal-header {
+:host {
+  .modal-header {
     border-bottom: none;
-}
+  }
 
-.modal-footer {
+  .modal-footer {
     border-top: none;
+  }
 }

@@ -13,23 +13,19 @@ class MockSpinnerService {
 }
 
 describe('SpinnerComponent', () => {
-
   let component: SpinnerComponent;
   let fixture: ComponentFixture<SpinnerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        SpinnerComponent
-      ],
+      declarations: [SpinnerComponent],
       providers: [
         {
           provide: SpinnerService,
-          useClass: MockSpinnerService
-        }
-      ]
+          useClass: MockSpinnerService,
+        },
+      ],
     });
-
   }));
 
   beforeEach(() => {

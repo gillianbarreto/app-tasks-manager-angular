@@ -1,14 +1,8 @@
 @import "../../../../styles/vars";
 
-.bi {
-  font-size: 10rem;
-  color: $primary;
-}
-.h1 {
-  color: $primary;
-
-  @media (max-width: 480px) {
-    font-size: 2rem;
-    line-height: 1;
+:host {
+  .bi {
+    font-size: 10rem;
+    color: $primary-color;
   }
 }

@@ -6,12 +6,10 @@ import { httpInterceptorProviders } from './interceptors';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [
-    NotFoundComponent,
-    SpinnerComponent],
+  declarations: [NotFoundComponent, SpinnerComponent],
   imports: [CommonModule],
-  exports: [ SpinnerComponent ],
-  providers: [httpInterceptorProviders]
+  exports: [SpinnerComponent],
+  providers: [httpInterceptorProviders],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

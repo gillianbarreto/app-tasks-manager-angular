@@ -1,14 +1,12 @@
-<div class="wrapper mt-5">
-  <div class="row w-75 w-md-100 mx-auto animate__animated animate__shakeX">
-    <div class="col-md-5 col-12 text-center">
-      <i class="bi bi-shield-x"></i>
-    </div>
-    <div class="col-md-7 col-12">
-      <div class="text-center mt-md-5">
-        <p class="h1">¡Ooops, la página que buscas no existe!</p>
-        <p>Puede que hayas escrito mal la URL o la página haya sido movida.</p>
-        <button type="button" (click)="goToHome()" class="btn btn-primary btn-lg">Ir a home</button>
-      </div>
-    </div>
+<section
+  class="mt-5 w-75 mx-auto d-flex flex-wrap align-items-center justify-content-center gap-3"
+>
+  <i class="bi bi-shield-x"></i>
+  <div class="text-center">
+    <h1>{{ messageError.title }}</h1>
+    <p>{{ messageError.text }}</p>
+    <button type="button" (click)="goToHome()" class="btn btn-primary">
+      {{ messageError.primaryButtonText }}
+    </button>
   </div>
-</div>
+</section>

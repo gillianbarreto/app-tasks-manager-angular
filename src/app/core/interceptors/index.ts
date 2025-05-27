@@ -5,5 +5,5 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
 
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
 ];

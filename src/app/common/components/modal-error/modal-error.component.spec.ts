@@ -10,9 +10,8 @@ describe('ModalErrorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ModalErrorComponent],
-      imports: [RouterTestingModule]
-    })
-      .compileComponents();
+      imports: [RouterTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

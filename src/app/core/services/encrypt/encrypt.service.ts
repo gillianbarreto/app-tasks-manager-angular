@@ -3,12 +3,14 @@ import { environment } from '@environment';
 import * as CryptoJS from 'crypto-js';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EncryptService {
-
   public encryptPassword(password: string): string {
-    return CryptoJS.HmacSHA512(password, environment.SECRET_KEY_PASSWORD).toString();
+    return CryptoJS.HmacSHA512(
+      password,
+      environment.SECRET_KEY_PASSWORD
+    ).toString();
   }
 
   public encrypt(data: any, key: string, object = true): string {
@@ -31,5 +33,4 @@ export class EncryptService {
       return '';
     }
   }
-
 }

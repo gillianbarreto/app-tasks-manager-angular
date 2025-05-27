@@ -1,8 +1,13 @@
-.modal-header {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-.modal-footer {
-  border-top: none;
-  justify-content: center;
+:host {
+
+
+  .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .modal-footer {
+    border-top: none;
+    justify-content: center;
+  }
 }
