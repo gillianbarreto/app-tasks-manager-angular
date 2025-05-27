@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable } from 'rxjs'; // catchError, map, of
 import { HttpClient } from '@angular/common/http';
 
 // import { environment } from '@environment';
-import { EncryptService, SessionService } from '@core/services';
+import { SessionService } from '@core/services';  // EncryptService
 import {
   ApiClientService,
   DataResponse,
@@ -16,22 +16,21 @@ import { LoginRequest } from '../models/login';
 export class LoginService extends ApiClientService {
   constructor(
     protected override http: HttpClient,
-    protected override sessionService: SessionService
-  ) // private encryptService: EncryptService
-  {
+    protected override sessionService: SessionService,
+    // private encryptService: EncryptService
+  ) {
     super(http, sessionService);
   }
 
   public login(body: LoginRequest): Observable<DataResponse> {
-    /*const url = `${this.urlBase}/login`;
+    /* const url = `${this.urlBase}/login`;
     const data = { data: this.encryptService.encrypt(body, environment.SECRET_KEY_REQUEST) };
-    return this.http.post(url, body, { headers: this.getHeaders(), observe: 'response' })
+    return this.http.post(url, data, { headers: this.getHeaders(), observe: 'response' })
       .pipe(
-        map(this.succesData),
+        map(this.successBody),
         catchError(this.handleError)
-      );
-    */
-    // Mockeando la respuesta
+      ); */
+    // Mocked response
     return new Observable((obs) =>
       obs.next(new DataResponse(200, 'Success', { user_id: 1, token: 'token' }))
     );
