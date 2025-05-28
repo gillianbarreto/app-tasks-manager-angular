@@ -14,15 +14,15 @@ export class SessionService {
   constructor(protected encryptService: EncryptService) {}
 
   public setData(key: string, data: any): void {
-    let item = environment.production
+    const item = environment.production
       ? this.encryptService.encrypt(
           data,
           this.secretKey,
-          typeof data === 'object'
+          typeof data === 'object',
         )
       : typeof data === 'object'
-      ? JSON.stringify(data)
-      : data;
+        ? JSON.stringify(data)
+        : data;
 
     sessionStorage.setItem(key, item);
   }

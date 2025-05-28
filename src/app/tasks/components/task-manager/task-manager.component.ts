@@ -9,18 +9,18 @@ import { TASK_TITLE } from '../../content';
 })
 export class TaskManagerComponent {
   public taskId!: string | null;
-  public modalTitle: string = '';
+  public modalTitle = '';
   public taskListTitle = TASK_TITLE.taskList;
 
   public tasksHelper = inject(TasksHelper);
 
-  public addTask(): void {
+  public onAddTask(): void {
     this.tasksHelper.showModal = true;
     this.taskId = null;
     this.modalTitle = TASK_TITLE.addTask;
   }
 
-  public editTask(taskId: string): void {
+  public onEditTask(taskId: string): void {
     this.tasksHelper.showModal = true;
     this.taskId = taskId;
     this.modalTitle = TASK_TITLE.editTask;

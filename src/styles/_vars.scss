@@ -8,6 +8,7 @@ $primary-color-25: rgba(83, 53, 125, 0.25);
   --bs-secondary-rgb: 248, 181, 95;
   --bs-heading-color: #{$primary-color};
   --bs-body-font-size: 1.25rem;
+  --bs-btn-active-border-color: #ccc;
 
   .btn-primary {
     --bs-btn-font-weight: 600;

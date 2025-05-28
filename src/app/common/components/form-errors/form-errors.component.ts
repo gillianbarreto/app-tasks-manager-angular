@@ -26,11 +26,11 @@ export class FormErrorsComponent {
     return this.control?.errors && (this.control.dirty || this.control.touched);
   }
 
-  public errorList(): Array<string> {
-    let _errors: Array<any> = [];
+  public errorList(): string[] {
+    let _errors: string[] = [];
     if (this.control.errors) {
-      _errors = Object.keys(this.control.errors).map((field) =>
-        this.getMessage(field, this.control.errors![field])
+      _errors = Object.keys(this.control.errors).map(field =>
+        this.getMessage(field, this.control.errors![field]),
       );
     }
 

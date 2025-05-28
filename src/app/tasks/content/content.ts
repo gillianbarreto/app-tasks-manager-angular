@@ -18,5 +18,5 @@ export const TASK_TITLE = {
 
 export const TASK_MESSAGE = {
   emptyList: 'There are no tasks available.',
-  deleteTask: 'Are you sure you want to delete this task?'
+  deleteTask: 'Are you sure you want to delete this task?',
 };

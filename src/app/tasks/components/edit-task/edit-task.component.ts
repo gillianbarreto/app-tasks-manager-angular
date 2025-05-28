@@ -20,16 +20,22 @@ import { TasksHelper } from '../../services/tasks.helper';
   standalone: true,
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ModalComponent, SharedModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ModalComponent,
+    SharedModule,
+  ],
 })
 export class EditTaskComponent implements OnInit {
   @Input() taskId!: string | null;
-  @Input() modalTitle: string = '';
+  @Input() modalTitle = '';
 
   public labels = TASK_LABELS;
   public taskForm!: FormGroup;
   private task!: Task;
-  public completedTask: boolean = false;
+  public completedTask = false;
 
   public tasksHelper = inject(TasksHelper);
   private modalService = inject(ModalService);

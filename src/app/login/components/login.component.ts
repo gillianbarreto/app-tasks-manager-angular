@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sessionService: SessionService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
   ) {
     this.configForm();
   }
@@ -38,8 +38,20 @@ export class LoginComponent implements OnInit {
 
   private configForm(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern(validFormat.EMAIL)]],
-      password: ['', [Validators.required, Validators.maxLength(10)]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(validFormat.EMAIL),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(10),
+        ],
+      ],
     });
   }
 
@@ -65,7 +77,7 @@ export class LoginComponent implements OnInit {
       },
       () => {
         this.resetLoginForm();
-      }
+      },
     );
   }
 

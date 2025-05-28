@@ -6,7 +6,7 @@ import { SpinnerService } from './spinner.service';
 
 class MockSpinnerService {
   returnSpinner() {
-    return new Observable((spinner) => {
+    return new Observable(spinner => {
       spinner.next(true);
     });
   }

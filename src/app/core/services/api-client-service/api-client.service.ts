@@ -12,7 +12,7 @@ export abstract class ApiClientService {
 
   constructor(
     protected http: HttpClient,
-    protected sessionService: SessionService
+    protected sessionService: SessionService,
   ) {}
 
   protected getHeaders(): any {
@@ -23,17 +23,17 @@ export abstract class ApiClientService {
     };
   }
 
-  protected successData<T>(response: HttpResponse<any>): DataResponse {
+  protected successData(response: HttpResponse<any>): DataResponse {
     if (response === null || response.status !== 200) throw response;
 
     return new DataResponse(
       response.body['code'],
       response.body['message'],
-      response.body['payload']
+      response.body['payload'],
     );
   }
 
-  protected successBody<T>(response: HttpResponse<any>): any {
+  protected successBody(response: HttpResponse<any>): any {
     if (response === null || response.status > 300) throw response;
 
     return response.body;
@@ -44,7 +44,7 @@ export abstract class ApiClientService {
       0,
       (body.error && body.error.mensaje) ||
         'We are unable to assist you at this time. Please try again later.',
-      body
+      body,
     );
     return throwError(response);
   }

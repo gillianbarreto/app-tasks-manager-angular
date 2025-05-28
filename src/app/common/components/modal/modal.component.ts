@@ -10,20 +10,20 @@ import { MODALS } from '@common';
   imports: [CommonModule],
 })
 export class ModalComponent {
-  @Input() title: string = '';
-  @Input() message: string = '';
+  @Input() title = '';
+  @Input() message = '';
   @Input() primaryButtonText: string = MODALS.primaryButtonText;
   @Input() secondaryButtonText: string = MODALS.secondaryButtonText;
-  @Input() primaryButtonDisabled: boolean = false;
+  @Input() primaryButtonDisabled = false;
 
-  @Output() onPrimaryAction: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onSecondaryAction: EventEmitter<any> = new EventEmitter<any>();
+  @Output() primaryAction: EventEmitter<void> = new EventEmitter<void>();
+  @Output() secondaryAction: EventEmitter<void> = new EventEmitter<void>();
 
   public success(): void {
-    this.onPrimaryAction.emit();
+    this.primaryAction.emit();
   }
 
   public cancel(): void {
-    this.onSecondaryAction.emit();
+    this.secondaryAction.emit();
   }
 }

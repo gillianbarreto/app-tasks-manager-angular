@@ -2,8 +2,8 @@
   [title]="modalTitle"
   [primaryButtonText]="labels.primaryButtonText"
   [primaryButtonDisabled]="taskForm && !taskForm.valid"
-  (onPrimaryAction)="saveTask()"
-  (onSecondaryAction)="hideModal()"
+  (primaryAction)="saveTask()"
+  (secondaryAction)="hideModal()"
 >
   <form class="row g-3" novalidate [formGroup]="taskForm">
     <div class="col-md-12">
@@ -17,7 +17,9 @@
       <app-form-errors [control]="taskForm.controls['title']"></app-form-errors>
     </div>
     <div class="col-md-12">
-      <label for="description" class="form-label">{{ labels.description }}</label>
+      <label for="description" class="form-label">
+        {{ labels.description }}
+      </label>
       <input
         type="text"
         class="form-control"

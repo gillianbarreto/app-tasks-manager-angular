@@ -6,11 +6,22 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormErrorsComponent } from './form-errors/form-errors.component';
 
-const components = [HeaderComponent, FooterComponent, FormErrorsComponent];
+const components = [
+  HeaderComponent,
+  FooterComponent,
+  FormErrorsComponent,
+];
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
-  declarations: [...components],
-  exports: [...components],
+  imports: [
+    CommonModule,
+    RouterModule,
+  ],
+  declarations: [
+    ...components,
+  ],
+  exports: [
+    ...components,
+  ],
 })
 export class SharedModule {}

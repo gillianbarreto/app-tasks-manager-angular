@@ -9,8 +9,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
-      imports: [RouterTestingModule],
+      declarations: [
+        HeaderComponent,
+      ],
+      imports: [
+        RouterTestingModule,
+      ],
     }).compileComponents();
   }));
 

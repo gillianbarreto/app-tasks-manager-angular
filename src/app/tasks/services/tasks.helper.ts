@@ -8,11 +8,11 @@ import { SessionService } from '@core/services';
   providedIn: 'root',
 })
 export class TasksHelper {
-  public showModal: boolean = false;
-  public showConfirmModal: boolean = false;
+  public showModal = false;
+  public showConfirmModal = false;
   private _tasksList: Task[] = [];
-  private _selectedTaskId: string = "";
-  private _allCompleted: boolean = false;
+  private _selectedTaskId = '';
+  private _allCompleted = false;
   private _tasksService = inject(TasksService);
   private _sessionService = inject(SessionService);
 
@@ -42,7 +42,7 @@ export class TasksHelper {
 
   getTaskById(taskId: string | null): Task {
     if (!taskId) return this.initTask();
-    const task = this._tasksList.find((task) => task.id == taskId);
+    const task = this._tasksList.find(task => task.id == taskId);
     if (!task) return this.initTask();
     return task;
   }
@@ -60,7 +60,7 @@ export class TasksHelper {
   getTasksList() {
     this._tasksList = [];
     const userId = this._sessionService.getUserID();
-    this._tasksService.getTasksList(userId).subscribe((response) => {
+    this._tasksService.getTasksList(userId).subscribe(response => {
       this.tasksList = response;
       this.setAllCompletedTask();
     });
@@ -68,11 +68,11 @@ export class TasksHelper {
 
   setAllCompletedTask() {
     this._allCompleted =
-      this._tasksList.findIndex((task) => task.completed == false) < 0;
+      this._tasksList.findIndex(task => task.completed == false) < 0;
   }
 
   completedAll() {
-    this._tasksList = this._tasksList.map((task) => {
+    this._tasksList = this._tasksList.map(task => {
       task.completed = this._allCompleted;
       this._tasksService.editTask(task.id, task).subscribe();
       return task;
@@ -96,7 +96,7 @@ export class TasksHelper {
 
   createTask(title: string, description: string) {
     const last = this._tasksList[this._tasksList.length - 1];
-    const id: string = (parseInt(last!.id, 10) + 1).toString();
+    const id = (parseInt(last!.id, 10) + 1).toString();
     const data: Task = {
       id,
       title,
@@ -105,26 +105,28 @@ export class TasksHelper {
       userId: this._sessionService.getUserID(),
     };
 
-    this._tasksService.addTask(data).subscribe((response) => {
+    this._tasksService.addTask(data).subscribe(response => {
       this._tasksList.push(response);
     });
   }
 
   updateTask(taskId: string, title: string, description: string) {
-    const index = this._tasksList.findIndex((task) => task.id == taskId);
+    const index = this._tasksList.findIndex(task => task.id == taskId);
     if (index > 0) {
       const data = this._tasksList[index];
       data.title = title;
       data.description = description;
-      this._tasksService.editTask(taskId, data).subscribe((response) => {
+      this._tasksService.editTask(taskId, data).subscribe(response => {
         this._tasksList[index] = response;
       });
     }
   }
 
   deleteTask() {
-    this._tasksService.deleteTask(this.selectedTaskId).subscribe((response) => {
-      this._tasksList = this._tasksList.filter((task) => task.id !== this.selectedTaskId);
+    this._tasksService.deleteTask(this.selectedTaskId).subscribe(() => {
+      this._tasksList = this._tasksList.filter(
+        task => task.id !== this.selectedTaskId,
+      );
     });
   }
 }

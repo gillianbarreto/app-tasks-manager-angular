@@ -13,11 +13,16 @@ import { DeleteTaskComponent } from '../delete-task/delete-task.component';
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss'],
-  imports: [CommonModule, FormsModule, SharedModule, DeleteTaskComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    DeleteTaskComponent,
+  ],
 })
 export class TasksListComponent implements OnInit {
-  @Output() onAddTask: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onEditTask: EventEmitter<string> = new EventEmitter<string>();
+  @Output() addTask: EventEmitter<void> = new EventEmitter<void>();
+  @Output() editTask: EventEmitter<string> = new EventEmitter<string>();
 
   public labels = TASK_LABELS;
   public emptyListMessage = TASK_MESSAGE.emptyList;
@@ -28,23 +33,23 @@ export class TasksListComponent implements OnInit {
     this.tasksHelper.getTasksList();
   }
 
-  public completedAll(): void {
+  public onCompletedAll(): void {
     this.tasksHelper.completedAll();
   }
 
-  public completeTask(task: Task): void {
+  public onCompleteTask(task: Task): void {
     this.tasksHelper.completeTask(task);
   }
 
-  public addTask(): void {
-    this.onAddTask.emit();
+  public onAddTask(): void {
+    this.addTask.emit();
   }
 
-  public editTask(taskId: string): void {
-    this.onEditTask.emit(taskId);
+  public onEditTask(taskId: string): void {
+    this.editTask.emit(taskId);
   }
 
-  public deleteTask(taskId: string): void {
+  public onDeleteTask(taskId: string): void {
     this.tasksHelper.selectedTaskId = taskId;
     this.tasksHelper.showConfirmModal = true;
   }

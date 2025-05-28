@@ -4,5 +4,9 @@
 
 .btn {
   border-radius: 40px;
-  padding: 10px 50px;
+
+  &.btn-primary,
+  &.btn-outline-primary {
+    padding: 10px 50px;
+  }
 }

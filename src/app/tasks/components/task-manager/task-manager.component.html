@@ -1,8 +1,8 @@
 <app-header [title]="taskListTitle"></app-header>
 
 <app-tasks-list
-  (onAddTask)="addTask()"
-  (onEditTask)="editTask($event)"
+  (addTask)="onAddTask()"
+  (editTask)="onEditTask($event)"
 ></app-tasks-list>
 
 <app-footer></app-footer>

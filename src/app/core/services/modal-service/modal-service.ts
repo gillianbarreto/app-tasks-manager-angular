@@ -8,15 +8,15 @@ declare var window: any;
 export class ModalService {
   private myModal: any;
 
-  initModal(modal: string) {
+  public initModal(modal: string) {
     this.myModal = new window.bootstrap.Modal(document.getElementById(modal));
   }
 
-  showModal() {
+  public showModal(): void {
     this.myModal.show();
   }
 
-  closeModal() {
+  public closeModal(): void {
     this.myModal.hide();
   }
 }

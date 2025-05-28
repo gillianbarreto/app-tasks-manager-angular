@@ -11,7 +11,7 @@ import { Task } from '../models/task';
 export class TasksService extends ApiClientService {
   constructor(
     protected override http: HttpClient,
-    protected override sessionService: SessionService
+    protected override sessionService: SessionService,
   ) {
     super(http, sessionService);
   }

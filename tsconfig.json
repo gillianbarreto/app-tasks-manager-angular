@@ -24,24 +24,58 @@
       "dom"
     ],
     "paths": {
-      "crypto": ["./node_modules/crypto-js"],
-      "@core": ["src/app/core"],
-      "@core/*": ["src/app/core/*"],
-      "@models": ["src/app/core/models"],
-      "@models/*": ["src/app/core/models/*"],
-      "@guards": ["src/app/core/guards"],
-      "@guards/*": ["src/app/core/guards/*"],
-      "@services": ["src/app/core/services"],
-      "@services/*": ["src/app/core/services/*"],
-      "@common": ["src/app/common"],
-      "@common/*": ["src/app/common/*"],
-      "@utils": ["src/app/common/utils"],
-      "@utils/*": ["src/app/common/utils/*"],
-      "@environment": ["src/environments"],
-      "@environment/*": ["src/environments/*"],
-      "@mocks": ["src/test/mocks"],
-      "@mocks/*": ["src/test/mocks/*"]
-    },
+      "crypto": [
+        "./node_modules/crypto-js"
+      ],
+      "@core": [
+        "src/app/core"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@models": [
+        "src/app/core/models"
+      ],
+      "@models/*": [
+        "src/app/core/models/*"
+      ],
+      "@guards": [
+        "src/app/core/guards"
+      ],
+      "@guards/*": [
+        "src/app/core/guards/*"
+      ],
+      "@services": [
+        "src/app/core/services"
+      ],
+      "@services/*": [
+        "src/app/core/services/*"
+      ],
+      "@common": [
+        "src/app/common"
+      ],
+      "@common/*": [
+        "src/app/common/*"
+      ],
+      "@utils": [
+        "src/app/common/utils"
+      ],
+      "@utils/*": [
+        "src/app/common/utils/*"
+      ],
+      "@environment": [
+        "src/environments"
+      ],
+      "@environment/*": [
+        "src/environments/*"
+      ],
+      "@mocks": [
+        "src/test/mocks"
+      ],
+      "@mocks/*": [
+        "src/test/mocks/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
