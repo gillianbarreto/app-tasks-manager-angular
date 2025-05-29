@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class NotFoundComponent {
     primaryButtonText: 'Go home',
   };
 
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   public goToHome(): void {
     this.router.navigate(['/']);

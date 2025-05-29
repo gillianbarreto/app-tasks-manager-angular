@@ -46,6 +46,6 @@ export abstract class ApiClientService {
         'We are unable to assist you at this time. Please try again later.',
       body,
     );
-    return throwError(response);
+    return throwError(() => response);
   }
 }

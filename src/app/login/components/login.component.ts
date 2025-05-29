@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '@environment';
@@ -23,16 +23,13 @@ export class LoginComponent implements OnInit {
     primaryButtonText: 'Login',
   };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private sessionService: SessionService,
-    private loginService: LoginService,
-    private router: Router,
-  ) {
-    this.configForm();
-  }
+  private formBuilder = inject(FormBuilder);
+  private sessionService = inject(SessionService);
+  private loginService = inject(LoginService);
+  private router = inject(Router);
 
   ngOnInit(): void {
+    this.configForm();
     this.sessionService.initStorage();
   }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '@environment';
 import { EncryptService } from '../encrypt/encrypt.service';
 
@@ -11,7 +11,7 @@ export const KEYS = {
 export class SessionService {
   private secretKey = environment.SECRET_KEY_SESSION_STORAGE;
 
-  constructor(protected encryptService: EncryptService) {}
+  protected encryptService = inject(EncryptService);
 
   public setData(key: string, data: any): void {
     const item = environment.production

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpRequest,
@@ -23,7 +23,7 @@ export class HttpError {
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private modalService: ModalService) {}
+  private modalService = inject(ModalService);
 
   intercept(
     req: HttpRequest<any>,
