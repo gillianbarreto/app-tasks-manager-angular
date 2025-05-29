@@ -33,7 +33,7 @@ export class DeleteTaskComponent implements OnInit {
   }
 
   public hideModal(): void {
-    this.tasksHelper.showConfirmModal = false;
+    this.tasksHelper.showConfirmModal.set(false);
     this.modalService.closeModal();
   }
 }

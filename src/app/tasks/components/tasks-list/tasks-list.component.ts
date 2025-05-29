@@ -49,6 +49,6 @@ export class TasksListComponent implements OnInit {
 
   public onDeleteTask(taskId: string): void {
     this.tasksHelper.selectedTaskId = taskId;
-    this.tasksHelper.showConfirmModal = true;
+    this.tasksHelper.showConfirmModal.set(true);
   }
 }

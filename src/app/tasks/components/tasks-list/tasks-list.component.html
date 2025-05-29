@@ -9,7 +9,7 @@
       <tr>
         <th scope="col">
           <input
-            *ngIf="tasksHelper.tasksList?.length"
+            *ngIf="tasksHelper.tasksList()?.length"
             [(ngModel)]="tasksHelper.allCompleted"
             (change)="onCompletedAll()"
             class="form-check-input"
@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasksHelper.tasksList">
+      <tr *ngFor="let task of tasksHelper.tasksList()">
         <td>
           <input
             [(ngModel)]="task.completed"
@@ -58,7 +58,7 @@
         </td>
       </tr>
 
-      <tr *ngIf="!tasksHelper.tasksList?.length">
+      <tr *ngIf="!tasksHelper.tasksList().length">
         <td colspan="6" class="text-center py-3">
           {{ emptyListMessage }}
         </td>
@@ -67,4 +67,4 @@
   </table>
 </section>
 
-<app-delete-task *ngIf="tasksHelper.showConfirmModal"></app-delete-task>
+<app-delete-task *ngIf="tasksHelper.showConfirmModal()"></app-delete-task>

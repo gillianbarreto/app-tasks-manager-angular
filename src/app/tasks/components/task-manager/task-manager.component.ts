@@ -28,13 +28,13 @@ export class TaskManagerComponent {
   public tasksHelper = inject(TasksHelper);
 
   public onAddTask(): void {
-    this.tasksHelper.showModal = true;
+    this.tasksHelper.showModal.set(true);
     this.taskId = null;
     this.modalTitle = TASK_TITLE.addTask;
   }
 
   public onEditTask(taskId: string): void {
-    this.tasksHelper.showModal = true;
+    this.tasksHelper.showModal.set(true);
     this.taskId = taskId;
     this.modalTitle = TASK_TITLE.editTask;
   }

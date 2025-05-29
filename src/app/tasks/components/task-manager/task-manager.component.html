@@ -8,7 +8,7 @@
 <app-footer></app-footer>
 
 <app-edit-task
-  *ngIf="tasksHelper.showModal"
+  *ngIf="tasksHelper.showModal()"
   [taskId]="taskId"
   [modalTitle]="modalTitle"
 ></app-edit-task>

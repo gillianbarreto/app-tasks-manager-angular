@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 
 import { Task } from '../models/task';
 import { TasksService } from './tasks.service';
@@ -8,9 +8,10 @@ import { SessionService } from '@core/services';
   providedIn: 'root',
 })
 export class TasksHelper {
-  public showModal = false;
-  public showConfirmModal = false;
-  private _tasksList: Task[] = [];
+  public showModal = signal(false);
+  public showConfirmModal = signal(false);
+  public tasksList = signal<Task[]>([]);
+
   private _selectedTaskId = '';
   private _allCompleted = false;
   private _tasksService = inject(TasksService);
@@ -24,14 +25,6 @@ export class TasksHelper {
     this._selectedTaskId = idTask;
   }
 
-  get tasksList(): Task[] {
-    return this._tasksList;
-  }
-
-  set tasksList(tasksList: Task[]) {
-    this._tasksList = tasksList;
-  }
-
   get allCompleted(): boolean {
     return this._allCompleted;
   }
@@ -42,7 +35,7 @@ export class TasksHelper {
 
   getTaskById(taskId: string | null): Task {
     if (!taskId) return this.initTask();
-    const task = this._tasksList.find(task => task.id == taskId);
+    const task = this.tasksList().find(task => task.id == taskId);
     if (!task) return this.initTask();
     return task;
   }
@@ -58,25 +51,27 @@ export class TasksHelper {
   }
 
   getTasksList() {
-    this._tasksList = [];
+    this.tasksList.set([]);
     const userId = this._sessionService.getUserID();
     this._tasksService.getTasksList(userId).subscribe(response => {
-      this.tasksList = response;
+      this.tasksList.set(response);
       this.setAllCompletedTask();
     });
   }
 
   setAllCompletedTask() {
     this._allCompleted =
-      this._tasksList.findIndex(task => task.completed == false) < 0;
+      this.tasksList().findIndex(task => task.completed == false) < 0;
   }
 
   completedAll() {
-    this._tasksList = this._tasksList.map(task => {
-      task.completed = this._allCompleted;
-      this._tasksService.editTask(task.id, task).subscribe();
-      return task;
-    });
+    this.tasksList.set(
+      this.tasksList().map(task => {
+        task.completed = this._allCompleted;
+        this._tasksService.editTask(task.id, task).subscribe();
+        return task;
+      }),
+    );
   }
 
   completeTask(task: Task) {
@@ -95,7 +90,7 @@ export class TasksHelper {
   }
 
   createTask(title: string, description: string) {
-    const last = this._tasksList[this._tasksList.length - 1];
+    const last = this.tasksList()[this.tasksList().length - 1];
     const id = (parseInt(last!.id, 10) + 1).toString();
     const data: Task = {
       id,
@@ -106,26 +101,29 @@ export class TasksHelper {
     };
 
     this._tasksService.addTask(data).subscribe(response => {
-      this._tasksList.push(response);
+      this.tasksList.update(tasks => [
+        ...tasks,
+        response,
+      ]);
     });
   }
 
   updateTask(taskId: string, title: string, description: string) {
-    const index = this._tasksList.findIndex(task => task.id == taskId);
-    if (index > 0) {
-      const data = this._tasksList[index];
+    const index = this.tasksList().findIndex(task => task.id == taskId);
+    if (index >= 0) {
+      const data = this.tasksList()[index];
       data.title = title;
       data.description = description;
-      this._tasksService.editTask(taskId, data).subscribe(response => {
-        this._tasksList[index] = response;
+      this._tasksService.editTask(taskId, data).subscribe(updatedData => {
+        this.tasksList()[index] = updatedData;
       });
     }
   }
 
   deleteTask() {
     this._tasksService.deleteTask(this.selectedTaskId).subscribe(() => {
-      this._tasksList = this._tasksList.filter(
-        task => task.id !== this.selectedTaskId,
+      this.tasksList.set(
+        this.tasksList().filter(task => task.id !== this.selectedTaskId),
       );
     });
   }

@@ -86,7 +86,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   public hideModal(): void {
-    this.tasksHelper.showModal = false;
+    this.tasksHelper.showModal.set(false);
     this.modalService.closeModal();
   }
 }
