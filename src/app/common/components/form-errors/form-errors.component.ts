@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, AbstractControlDirective } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-form-errors',
   templateUrl: './form-errors.component.html',
   styleUrls: ['./form-errors.component.scss'],
+  standalone: true,
+  imports: [NgFor],
 })
 export class FormErrorsComponent {
   @Input() control!: AbstractControlDirective | AbstractControl;

@@ -11,10 +11,10 @@ import {
 import { ModalService } from '@core/services';
 import { ModalComponent } from '@common/components/modal/modal.component';
 import { validFormat } from '@common/utils';
-import { SharedModule } from '@common';
 import { Task } from '../../models/task';
 import { TASK_LABELS } from '../../content';
 import { TasksHelper } from '../../services/tasks.helper';
+import { FormErrorsComponent } from '@common/components/form-errors/form-errors.component';
 
 @Component({
   standalone: true,
@@ -25,7 +25,7 @@ import { TasksHelper } from '../../services/tasks.helper';
     FormsModule,
     ReactiveFormsModule,
     ModalComponent,
-    SharedModule,
+    FormErrorsComponent,
   ],
 })
 export class EditTaskComponent implements OnInit {

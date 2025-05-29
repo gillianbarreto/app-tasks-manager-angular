@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { Task } from '../../models/task';
 import { TasksHelper } from '../../services/tasks.helper';
 import { TASK_LABELS, TASK_MESSAGE } from '../../content';
-import { SharedModule } from '@common';
 import { DeleteTaskComponent } from '../delete-task/delete-task.component';
 
 @Component({
@@ -16,7 +15,6 @@ import { DeleteTaskComponent } from '../delete-task/delete-task.component';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
     DeleteTaskComponent,
   ],
 })

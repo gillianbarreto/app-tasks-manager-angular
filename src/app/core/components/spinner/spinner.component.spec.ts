@@ -18,7 +18,7 @@ describe('SpinnerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SpinnerComponent],
+      imports: [SpinnerComponent],
       providers: [
         {
           provide: SpinnerService,
