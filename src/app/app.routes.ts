@@ -6,7 +6,9 @@ export const routes: Routes = [
   {
     path: 'tasks-manager',
     loadChildren: () =>
-      import('./tasks/components/task-manager.routes').then(m => m.routes),
+      import('./tasks/components/task-manager/task-manager.routes').then(
+        m => m.routes,
+      ),
     canActivate: [AuthGuard],
   },
   {
