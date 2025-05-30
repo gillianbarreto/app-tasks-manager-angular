@@ -1,3 +1,5 @@
-<div *ngIf="spinner" class="loader-background">
-  <div class="loader"></div>
-</div>
+@if (spinner) {
+  <div class="loader-background">
+    <div class="loader"></div>
+  </div>
+}

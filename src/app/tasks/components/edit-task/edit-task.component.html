@@ -33,12 +33,15 @@
 
     <div class="col-md-12">
       <span class="pe-2">{{ labels.status }}</span>
-      <span *ngIf="completedTask" class="badge text-bg-secondary">
-        {{ labels.completed }}
-      </span>
-      <span *ngIf="!completedTask" class="badge text-bg-danger">
-        {{ labels.pending }}
-      </span>
+      @if (completedTask) {
+        <span class="badge text-bg-secondary">
+          {{ labels.completed }}
+        </span>
+      } @else {
+        <span class="badge text-bg-danger">
+          {{ labels.pending }}
+        </span>
+      }
     </div>
   </form>
 </app-modal>

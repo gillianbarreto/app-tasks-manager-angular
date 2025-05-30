@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NgIf } from '@angular/common';
 
 import { TasksHelper } from '../../services/tasks.helper';
 import { TASK_TITLE } from '../../content';
@@ -17,7 +16,6 @@ import { HeaderComponent } from '../../../common/components/header/header.compon
     FooterComponent,
     EditTaskComponent,
     TasksListComponent,
-    NgIf,
   ],
 })
 export class TaskManagerComponent {

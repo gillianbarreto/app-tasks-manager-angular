@@ -8,15 +8,16 @@
     <thead class="table-secondary">
       <tr>
         <th scope="col">
-          <input
-            *ngIf="tasksHelper.tasksList()?.length"
-            [(ngModel)]="tasksHelper.allCompleted"
-            (change)="onCompletedAll()"
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="chek-all"
-          />
+          @if (tasksHelper.tasksList().length) {
+            <input
+              [(ngModel)]="tasksHelper.allCompleted"
+              (change)="onCompletedAll()"
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="chek-all"
+            />
+          }
         </th>
         <th scope="col">{{ labels.title }}</th>
         <th scope="col">{{ labels.description }}</th>
@@ -25,46 +26,52 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasksHelper.tasksList()">
-        <td>
-          <input
-            [(ngModel)]="task.completed"
-            (change)="onCompleteTask(task)"
-            class="form-check-input"
-            type="checkbox"
-            value=""
-          />
-        </td>
-        <td>{{ task.title }}</td>
-        <td>{{ task.description }}</td>
-        <td>
-          <span *ngIf="task.completed" class="badge text-bg-secondary">
-            {{ labels.completed }}
-          </span>
-          <span *ngIf="!task.completed" class="badge text-bg-danger">
-            {{ labels.pending }}
-          </span>
-        </td>
-
-        <td>
-          <span class="d-flex gap-2">
-            <button class="btn" (click)="onEditTask(task.id)">
-              <i class="bi bi-pencil px-2 pe-auto"></i>
-            </button>
-            <button class="btn" (click)="onDeleteTask(task.id)">
-              <i class="bi bi-trash px-2 pe-auto"></i>
-            </button>
-          </span>
-        </td>
-      </tr>
-
-      <tr *ngIf="!tasksHelper.tasksList().length">
-        <td colspan="6" class="text-center py-3">
-          {{ emptyListMessage }}
-        </td>
-      </tr>
+      @for (task of tasksHelper.tasksList(); track task.id) {
+        <tr>
+          <td>
+            <input
+              [(ngModel)]="task.completed"
+              (change)="onCompleteTask(task)"
+              class="form-check-input"
+              type="checkbox"
+              value=""
+            />
+          </td>
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>
+            @if (task.completed) {
+              <span class="badge text-bg-secondary">
+                {{ labels.completed }}
+              </span>
+            } @else {
+              <span class="badge text-bg-danger">
+                {{ labels.pending }}
+              </span>
+            }
+          </td>
+          <td>
+            <span class="d-flex gap-2">
+              <button class="btn" (click)="onEditTask(task.id)">
+                <i class="bi bi-pencil px-2 pe-auto"></i>
+              </button>
+              <button class="btn" (click)="onDeleteTask(task.id)">
+                <i class="bi bi-trash px-2 pe-auto"></i>
+              </button>
+            </span>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="text-center py-3">
+            {{ emptyListMessage }}
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 </section>
 
-<app-delete-task *ngIf="tasksHelper.showConfirmModal()"></app-delete-task>
+@if (tasksHelper.showConfirmModal()) {
+  <app-delete-task></app-delete-task>
+}
