@@ -43,12 +43,16 @@ Testing of application builds (@angular-devkit/build-angular)
 
 ### ng serve:
 
-- browser: 1.624 sec / 3.57MB
-- browser-esbuild: 1.563 sec / 562.86kB
-- application: 1.592 sec / 562.86kB
+| builder         | Build Time | Size App |
+| --------------- | ---------- | -------- |
+| browser         | 1.624 sec  | 3.57MB   |
+| browser-esbuild | 1.563 sec  | 562.86kB |
+| application     | 1.592 sec  | 562.86kB |
 
 ### ng build:
 
-- browser: 6.530 sec / 725.46kB
-- browser-esbuild: 3.026 sec / 702.60kB
-- application: 2.907 sec / 702.60kB
+| builder         | Build Time | Size App |
+| --------------- | ---------- | -------- |
+| browser         | 6.530 sec  | 725.46kB |
+| browser-esbuild | 3.026 sec  | 702.60kB |
+| application     | 2.907 sec  | 702.60kB |
