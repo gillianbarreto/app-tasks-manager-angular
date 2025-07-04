@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GENERIC_ERROR } from '@common';
+import { GENERIC_ERROR } from '@shared';
 
 @Component({
   selector: 'app-modal-error',

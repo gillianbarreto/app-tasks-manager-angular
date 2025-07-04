@@ -51,17 +51,17 @@
       "@services/*": [
         "src/app/core/services/*"
       ],
-      "@common": [
-        "src/app/common"
+      "@shared": [
+        "src/app/shared"
       ],
-      "@common/*": [
-        "src/app/common/*"
+      "@shared/*": [
+        "src/app/shared/*"
       ],
       "@utils": [
-        "src/app/common/utils"
+        "src/app/shared/utils"
       ],
       "@utils/*": [
-        "src/app/common/utils/*"
+        "src/app/shared/utils/*"
       ],
       "@environment": [
         "src/environments"

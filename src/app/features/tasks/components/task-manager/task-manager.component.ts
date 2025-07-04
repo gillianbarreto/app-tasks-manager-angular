@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 
+import { HeaderComponent, FooterComponent } from '@shared';
 import { TasksHelper } from '../../services/tasks.helper';
 import { TASK_TITLE } from '../../content';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
-import { FooterComponent } from '../../../common/components/footer/footer.component';
 import { TasksListComponent } from '../tasks-list/tasks-list.component';
-import { HeaderComponent } from '../../../common/components/header/header.component';
 
 @Component({
   selector: 'app-task',

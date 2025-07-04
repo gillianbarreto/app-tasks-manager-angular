@@ -6,8 +6,8 @@ import {
 } from '@angular/common/http';
 
 import { SessionService } from '@services';
-import { routes } from './app.routes';
 import { httpInterceptorProviders } from '@core/interceptors';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

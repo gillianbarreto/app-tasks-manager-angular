@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MODALS } from '@common';
+import { MODALS } from '@shared';
 
 @Component({
   standalone: true,

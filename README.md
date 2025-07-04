@@ -4,6 +4,8 @@
 
 Application to update a list of tasks. Once logged in, the user can add, modify or delete tasks and can also mark them as Completed.
 
+Login is mocked from application. A [json-server](https://www.npmjs.com/package/json-server) is used to retrieve or update tasks.
+
 ## Configuration
 
 ### Prerequisites

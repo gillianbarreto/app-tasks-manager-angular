@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 import { environment } from '@environment';
 
 import { DataResponse, KEYS, SessionService } from '@services';
+import { FormErrorsComponent } from '@shared';
+import { validFormat } from '@utils';
 import { LoginService } from '../services/login.service';
-import { validFormat } from '@common/utils';
 import { LoginRequest } from '../models/login';
-import { FormErrorsComponent } from '../../common/components/form-errors/form-errors.component';
 
 @Component({
   selector: 'app-login',

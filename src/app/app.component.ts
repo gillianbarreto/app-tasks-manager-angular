@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalErrorComponent } from './common/components/modal-error/modal-error.component';
-import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { RouterOutlet } from '@angular/router';
+
+import { ModalErrorComponent } from '@shared';
+import { SpinnerComponent } from '@core/components';
 
 @Component({
   selector: 'app-root',

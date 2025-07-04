@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 
 import { ModalService } from '@core/services';
-import { ModalComponent } from '@common/components/modal/modal.component';
+import { ModalComponent } from '@shared';
 import { TASK_MESSAGE, TASK_TITLE } from '../../content';
 import { TasksHelper } from '../../services/tasks.helper';
 

@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { SessionService } from '@core/services';
-import {
-  ApiClientService,
-  DataResponse,
-} from '@core/services/api-client-service';
+import { ApiClientService, DataResponse, SessionService } from '@core/services';
 import { LoginRequest } from '../models/login';
 
 @Injectable({

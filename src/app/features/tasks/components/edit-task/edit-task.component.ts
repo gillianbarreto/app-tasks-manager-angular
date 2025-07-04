@@ -9,13 +9,11 @@ import {
 } from '@angular/forms';
 
 import { ModalService } from '@core/services';
-import { ModalComponent } from '@common/components/modal/modal.component';
-import { validFormat } from '@common/utils';
+import { validFormat } from '@utils';
+import { ModalComponent, FormErrorsComponent } from '@shared';
 import { Task } from '../../models/task';
 import { TASK_LABELS } from '../../content';
 import { TasksHelper } from '../../services/tasks.helper';
-import { FormErrorsComponent } from '@common/components/form-errors/form-errors.component';
-
 @Component({
   standalone: true,
   selector: 'app-edit-task',
