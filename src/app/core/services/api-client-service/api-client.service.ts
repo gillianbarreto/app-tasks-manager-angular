@@ -5,7 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from '@environment';
 import { DataResponse } from './data-response';
 import { SessionService } from '../session/session.service';
-
 @Injectable()
 export abstract class ApiClientService {
   protected urlBase = environment.API_URL;
@@ -15,7 +14,7 @@ export abstract class ApiClientService {
     protected sessionService: SessionService,
   ) {}
 
-  protected getHeaders(): any {
+  protected getHeaders(): Record<string, string> {
     return {
       'Content-Type': 'application/json',
       'nombre-aplicacion': environment.APP_ID,
@@ -24,16 +23,17 @@ export abstract class ApiClientService {
   }
 
   protected successData(response: HttpResponse<any>): DataResponse {
-    if (response === null || response.status !== 200) throw response;
+    if (response === null || response.status !== 200 || !response.body)
+      throw response;
 
     return new DataResponse(
-      response.body['code'],
-      response.body['message'],
-      response.body['payload'],
+      response.body.code,
+      response.body.message,
+      response.body.payload,
     );
   }
 
-  protected successBody(response: HttpResponse<any>): any {
+  protected successBody(response: HttpResponse<any>): unknown {
     if (response === null || response.status > 300) throw response;
 
     return response.body;

@@ -25,10 +25,10 @@ export class HttpError {
 export class HttpErrorInterceptor implements HttpInterceptor {
   private modalService = inject(ModalService);
 
-  intercept(
-    req: HttpRequest<any>,
+  intercept<T>(
+    req: HttpRequest<T>,
     next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<T>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (

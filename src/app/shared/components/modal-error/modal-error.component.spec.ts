@@ -1,5 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { ModalErrorComponent } from './modal-error.component';
 
@@ -7,11 +7,13 @@ describe('ModalErrorComponent', () => {
   let component: ModalErrorComponent;
   let fixture: ComponentFixture<ModalErrorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         ModalErrorComponent,
+      ],
+      providers: [
+        provideRouter([]),
       ],
     }).compileComponents();
   }));

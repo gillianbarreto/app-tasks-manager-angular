@@ -13,10 +13,10 @@ import { SpinnerService } from '@core/components';
 export class SpinnerInterceptor implements HttpInterceptor {
   private spinner = inject(SpinnerService);
 
-  intercept(
-    req: HttpRequest<any>,
+  intercept<T>(
+    req: HttpRequest<T>,
     next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<T>> {
     this.spinner.openSpinner();
 
     return next.handle(req).pipe(

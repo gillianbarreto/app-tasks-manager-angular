@@ -3,7 +3,7 @@ export class DataResponse {
   private _message: string;
   private _payload: any = {};
 
-  constructor(code: number, message: string, payload: any) {
+  constructor(code: number, message: string, payload: unknown) {
     this._code = code;
     this._message = message;
     this._payload = payload;

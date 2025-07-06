@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { SpinnerService } from './spinner.service';
 
 describe('SpinnerService', () => {
@@ -9,22 +8,19 @@ describe('SpinnerService', () => {
     service = TestBed.inject(SpinnerService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('returnSpinner())', () => {
-    service.returnSpinner();
-    expect(service).toBeTruthy();
-  });
-
-  it('openSpinner())', () => {
+  it('when openSpinner() is called, should emit true', done => {
+    service.returnSpinner().subscribe(value => {
+      expect(value).toBeTrue();
+      done();
+    });
     service.openSpinner();
-    expect(service).toBeTruthy();
   });
 
-  it('closeSpinner())', () => {
+  it('when closeSpinner() is called, should emit false', done => {
+    service.returnSpinner().subscribe(value => {
+      expect(value).toBeFalse();
+      done();
+    });
     service.closeSpinner();
-    expect(service).toBeTruthy();
   });
 });

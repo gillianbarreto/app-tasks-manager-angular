@@ -64,8 +64,8 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
-    browsers: ['ChromeHeadless'],
+    autoWatch: true,  // false for CI
+    browsers: ['Chrome'], // 'ChromeHeadless' for CI
     singleRun: true,
     restartOnFileChange: false,
   });
